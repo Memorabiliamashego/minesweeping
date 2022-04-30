@@ -14,7 +14,7 @@ root.resizable(False, False)
 
 top_frame = Frame(
     root,
-    bg='red',   # Change to black later
+    bg='black',   # Change to black later
     width=settings.WIDTH,
     height=utils.height_perc(25),
 )
@@ -23,7 +23,7 @@ top_frame.place(x=0, y=0)
 
 left_frame = Frame(
     root,
-    bg='blue',   # Change to black later
+    bg='black',   # Change to black later
     width=utils.width_perc(25),
     height=utils.height_perc(75)
 )
@@ -32,7 +32,7 @@ left_frame.place(x=0, y=utils.height_perc(25))
 
 center_frame = Frame(
     root,
-    bg='green', # Change to black later
+    bg='black', # Change to black later
     width=utils.width_perc(75),
     height=utils.height_perc(75)
 )
