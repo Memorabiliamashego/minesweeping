@@ -1,5 +1,6 @@
-from asyncio import FastChildWatcher
+from calendar import c
 from tkinter import *
+from cell import Cell
 import settings
 import utils
 
@@ -44,9 +45,25 @@ center_frame.place(
 
 
 
+for x in range(settings.GRID_SIZE):
+    for y in range(settings.GRID_SIZE):
+        c = Cell(x,y)
+        c.create_btn_object(center_frame)
+        c.cell_btn_object.grid(
+            column=x, row=y
+        )
 
+# c1 = Cell()
+# c1.create_btn_object(center_frame)
+# c1.cell_btn_object.grid(
+#     column=0, row=0
+# )
 
-
+# c2 = Cell()
+# c2.create_btn_object(center_frame)
+# c2.cell_btn_object.grid(
+#     column=1, row=0
+# )
 
 
 
