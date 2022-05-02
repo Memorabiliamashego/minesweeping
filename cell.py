@@ -52,9 +52,15 @@ class Cell:
         '''logic to interrupt the game & display msg'''
         self.cell_btn_object.configure(bg="red")
     
-    def show_cell(self):
-        
-        surrounding_cells = [
+    def get_cell_by_axis(self, x,y):
+        # Return a cell object based on the values of x,y
+        for cell in Cell.all:
+            if cell.x == x and cell.y == y:
+                return cell
+    
+    @property
+    def surrounding_cells(self):
+            cells = [
             self.get_cell_by_axis(self.x - 1, self.y - 1),
             self.get_cell_by_axis(self.x - 1, self.y),
             self.get_cell_by_axis(self.x - 1, self.y + 1),
@@ -64,16 +70,24 @@ class Cell:
             self.get_cell_by_axis(self.x + 1, self.y + 1),
             self.get_cell_by_axis(self.x, self.y + 1)
         ]
-        print(surrounding_cells)
+            cells = [cell for cell in cells if cell is not None]
+            return cells
 
-    def get_cell_by_axis(self, x,y):
-        # Return a cell object based on the values of x,y
-        for cell in Cell.all:
-            if cell.x == x and cell.y == y:
-                return cell
 
+
+    @property
+    def surrounded_cells_mine_length(self):
+        counter = 0
+        for cell in self.surrounding_cells:
+            if cell.is_mine:
+                counter += 1
+
+        return counter
+
+
+    def show_cell(self):
+        self.cell_btn_object.configure(text=self.surrounded_cells_mine_length)
     
-
     @staticmethod
 
     def randomize_mines():
