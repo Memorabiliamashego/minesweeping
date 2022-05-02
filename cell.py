@@ -1,3 +1,4 @@
+from __future__ import print_function
 from tkinter import Button
 import random
 import settings 
@@ -32,21 +33,12 @@ class Cell:
         self.cell_btn_object = btn
    
    
-    def show_mine(self):
-        
-        '''logic to interrupt the game & display msg'''
-        self.cell_btn_object.configure(bg="red")
-    
-    def show_cell(self):
-        pass
-
-
     def left_click_act(self, event):
         ''' logic for left click'''
         if self.is_mine:
-            self.show_mine
+            self.show_mine()
         else:
-            self.show.cell()
+            self.show_cell()
 
     
 
@@ -55,6 +47,22 @@ class Cell:
         '''logic for right click'''
     
 
+    def show_mine(self):
+        
+        '''logic to interrupt the game & display msg'''
+        self.cell_btn_object.configure(bg="red")
+    
+    def show_cell(self):
+        print(self.get_cell_by_axis(0,0))
+
+
+    def get_cell_by_axis(self, x,y):
+        # Return a cell object based on the values of x,y
+        for cell in Cell.all:
+            if cell.x == x and cell.y == y:
+                return cell
+
+    
 
     @staticmethod
 
