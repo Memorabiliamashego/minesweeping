@@ -53,8 +53,18 @@ class Cell:
         self.cell_btn_object.configure(bg="red")
     
     def show_cell(self):
-        print(self.get_cell_by_axis(0,0))
-
+        
+        surrounding_cells = [
+            self.get_cell_by_axis(self.x - 1, self.y - 1),
+            self.get_cell_by_axis(self.x - 1, self.y),
+            self.get_cell_by_axis(self.x - 1, self.y + 1),
+            self.get_cell_by_axis(self.x, self.y - 1),
+            self.get_cell_by_axis(self.x + 1, self.y - 1),
+            self.get_cell_by_axis(self.x + 1, self.y),
+            self.get_cell_by_axis(self.x + 1, self.y + 1),
+            self.get_cell_by_axis(self.x, self.y + 1)
+        ]
+        print(surrounding_cells)
 
     def get_cell_by_axis(self, x,y):
         # Return a cell object based on the values of x,y
