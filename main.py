@@ -55,7 +55,11 @@ for x in range(settings.GRID_SIZE):
 
 Cell.randomize_mines()
 
-
+# Call the label from the cell class
+Cell.create_cell_count_label(left_frame)
+Cell.cell_count_label_object.place(
+    y=0, x=0
+)
 
 
 

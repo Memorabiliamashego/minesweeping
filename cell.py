@@ -1,12 +1,16 @@
 from __future__ import print_function
-from tkinter import Button
+from tkinter import Button, Label
 import random
+
+
 import settings 
 
 
 class Cell:
     '''Cell Object'''
     all = []
+    cell_count = settings.CELL_COUNT
+    cell_count_label_object = None
     def __init__(self, x,y, is_mine=False):
         self.is_mine = is_mine
         self.cell_btn_object = None
@@ -22,16 +26,29 @@ class Cell:
         btn = Button(
             
             location,
-            width=8, 
+            width=12, 
             height=4,
         )
 
         btn.bind('<Button-1>', self.left_click_act) #left click
         btn.bind('<Button-3>', self.right_click_act)    # right click
 
-
         self.cell_btn_object = btn
-   
+    
+    
+    
+    @staticmethod    
+    def create_cell_count_label(location):
+        lbl = Label(
+            location,
+            bg='black',
+            fg='white',
+            text=f"Cells Left:{Cell.cell_count}",
+            font=("Monospace", 15)
+
+        )
+        Cell.cell_count_label_object = lbl
+
    
     def left_click_act(self, event):
         ''' logic for left click'''
@@ -90,7 +107,15 @@ class Cell:
 
 
     def show_cell(self):
+        Cell.cell_count -= 1
         self.cell_btn_object.configure(text=self.surrounded_cells_mine_length)
+        # Replace cell count with newer count
+        if Cell.cell_count_label_object: 
+            Cell.cell_count_label_object.configure(
+            
+                text=f"Cells Left:{Cell.cell_count}"
+            
+            )
     
     @staticmethod
 
